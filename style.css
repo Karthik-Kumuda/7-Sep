@@ -467,3 +467,73 @@ section{
 @media (min-width: 760px){
   .hero{padding:46px 28px 34px}
 }
+.wishes-wrap{
+  padding:18px 18px 32px;
+}
+
+.wishes-panel{
+  padding:22px 18px 20px;
+}
+
+.wishes-head{
+  text-align:center;
+  margin-bottom:18px;
+}
+
+.wishes-head .subtitle{
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+.wishes-form{
+  display:grid;
+  gap:12px;
+}
+
+.wishes-form input,
+.wishes-form textarea{
+  width:100%;
+  border:1px solid rgba(255,240,191,.14);
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  border-radius:18px;
+  padding:14px 16px;
+  outline:none;
+  font:inherit;
+}
+
+.wishes-form textarea{
+  resize:none;
+  min-height:140px;
+}
+
+.wishes-form input::placeholder,
+.wishes-form textarea::placeholder{
+  color:rgba(200,188,168,.7);
+}
+
+.wishes-form input:focus,
+.wishes-form textarea:focus{
+  border-color:rgba(216,181,106,.45);
+  box-shadow:0 0 0 3px rgba(216,181,106,.08);
+}
+
+.wishes-btn{
+  width:100%;
+  justify-content:center;
+  margin-top:4px;
+}
+
+.wishes-success{
+  margin-top:14px;
+  text-align:center;
+  color:var(--gold2);
+  font-size:14px;
+  padding:12px 14px;
+  border-radius:16px;
+  border:1px solid rgba(216,181,106,.18);
+  background:rgba(216,181,106,.08);
+}
