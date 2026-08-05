@@ -5,7 +5,19 @@ const scratchCard = document.getElementById('scratchCard');
 const scratchLayer = document.getElementById('scratchLayer');
 const dateReveal = document.getElementById('dateReveal');
 const petals = document.getElementById('petals');
+const bgMusic = document.getElementById('bgMusic');
 
+openBtn.addEventListener('click', async () => {
+  document.body.classList.add('open');
+  cover.style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  try {
+    await bgMusic.play();
+  } catch (e) {
+    console.log('Music could not autoplay yet');
+  }
+});
 openBtn.addEventListener('click', () => {
   document.body.classList.add('open');
   cover.style.display = 'none';
