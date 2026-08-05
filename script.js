@@ -1,12 +1,17 @@
 const openBtn = document.getElementById('openBtn');
+const cover = document.getElementById('cover');
+const content = document.getElementById('content');
 const scratchCard = document.getElementById('scratchCard');
 const scratchLayer = document.getElementById('scratchLayer');
 const dateReveal = document.getElementById('dateReveal');
 const petals = document.getElementById('petals');
 
 openBtn.addEventListener('click', () => {
-  document.body.classList.add('open');
-  setTimeout(() => document.getElementById('content').scrollIntoView({behavior:'smooth', block:'start'}), 200);
+  cover.style.display = 'none';
+  content.style.opacity = '1';
+  content.style.transform = 'none';
+  content.style.pointerEvents = 'auto';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 let revealed = false;
