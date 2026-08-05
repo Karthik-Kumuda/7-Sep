@@ -18,6 +18,11 @@ body{
     linear-gradient(180deg, #09090c, #0d0d12 40%, #0b0b0f);
   color:var(--text);
   font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  overflow:hidden;
+  overflow-x:hidden;
+}
+body.open{
+  overflow-y:auto;
   overflow-x:hidden;
 }
 a{color:inherit}
@@ -40,7 +45,8 @@ a{color:inherit}
   display:grid;
   place-items:center;
   padding:24px;
-  position:relative;
+  position:fixed;
+  inset:0;
   z-index:1;
   overflow:hidden;
 }
@@ -187,6 +193,7 @@ h1,h2,h3{
   transition:.9s ease;
   position:relative;
   z-index:1;
+  min-height:100vh;
 }
 body.open .content{
   opacity:1;
@@ -197,7 +204,6 @@ body.open .cover{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
-  position:absolute;
 }
 
 section{
@@ -286,7 +292,7 @@ section{
   color:var(--muted);
 }
 
-/* Events layout */
+/* Events layout: Reception + Wedding side by side, Venue full width under them */
 .events-grid{
   display:grid;
   gap:14px;
@@ -302,42 +308,9 @@ section{
 .venue-card{
   grid-area: venue;
   width:100%;
-}
-
-.event-card, .venue-card, .scratch-card{
-  border:1px solid rgba(216,181,106,.14);
-  background:rgba(255,255,255,.03);
-  border-radius:24px;
-  padding:18px;
-  position:relative;
-  overflow:hidden;
-}
-
-.event-card h3, .venue-card h3{
-  font-size:1.9rem;
-  margin-bottom:8px;
-}
-
-.venue-card{
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-}
-
-.map-btn{
-  width:100%;
-  justify-content:center;
-  margin-top:14px;
-}
-
-@media (max-width: 760px){
-  .events-grid{
-    grid-template-columns:1fr;
-    grid-template-areas:
-      "reception"
-      "wedding"
-      "venue";
-  }
 }
 
 .event-card, .venue-card, .scratch-card{
