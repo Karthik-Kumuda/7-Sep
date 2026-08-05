@@ -292,7 +292,6 @@ section{
   color:var(--muted);
 }
 
-/* Events layout: Reception + Wedding side by side, Venue full width under them */
 .events-grid{
   display:grid;
   gap:14px;
@@ -302,7 +301,6 @@ section{
     "reception wedding"
     "venue venue";
 }
-
 .reception-card{ grid-area: reception; }
 .wedding-card{ grid-area: wedding; }
 .venue-card{
@@ -312,7 +310,6 @@ section{
   flex-direction:column;
   justify-content:space-between;
 }
-
 .event-card, .venue-card, .scratch-card{
   border:1px solid rgba(216,181,106,.14);
   background:rgba(255,255,255,.03);
@@ -408,20 +405,33 @@ section{
 }
 .photo-stack{
   display:grid;
-  gap:14px;
-  padding-bottom:8px;
+  gap:0;
+  padding-bottom:20px;
 }
 .photo{
-  height:320px;
-  border-radius:28px;
+  width:100%;
+  aspect-ratio:3 / 4;
   overflow:hidden;
+  border-radius:28px;
   border:1px solid rgba(216,181,106,.12);
   position:sticky;
   top:12px;
+  margin-top:-110px;
   box-shadow:var(--shadow);
+  background:rgba(255,255,255,.02);
 }
-.photo:nth-child(2){top:22px}
-.photo:nth-child(3){top:32px}
+.photo:first-child{
+  margin-top:0;
+}
+.photo:nth-child(2){ top:28px; }
+.photo:nth-child(3){ top:44px; }
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  display:block;
+}
 .photo .placeholder{
   width:100%;height:100%;
   display:grid;place-items:center;
@@ -450,8 +460,10 @@ section{
       "wedding"
       "venue";
   }
+  .photo{
+    aspect-ratio:3 / 4;
+  }
 }
 @media (min-width: 760px){
   .hero{padding:46px 28px 34px}
-  .photo{height:420px}
 }
