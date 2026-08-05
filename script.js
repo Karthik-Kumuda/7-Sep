@@ -7,10 +7,8 @@ const dateReveal = document.getElementById('dateReveal');
 const petals = document.getElementById('petals');
 
 openBtn.addEventListener('click', () => {
+  document.body.classList.add('open');
   cover.style.display = 'none';
-  content.style.opacity = '1';
-  content.style.transform = 'none';
-  content.style.pointerEvents = 'auto';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
@@ -50,7 +48,7 @@ function burstPetals(){
     scratchLayer.style.setProperty('--x', x + '%');
     scratchLayer.style.setProperty('--y', y + '%');
     if (e.type !== 'pointermove' && e.type !== 'touchmove') revealDate();
-  }, {passive:true});
+  }, { passive:true });
 });
 scratchCard.addEventListener('click', revealDate);
 
