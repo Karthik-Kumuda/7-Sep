@@ -294,17 +294,50 @@ section{
   grid-template-columns:1fr 1fr;
   grid-template-areas:
     "reception wedding"
-    ". venue";
+    "venue venue";
 }
 
 .reception-card{ grid-area: reception; }
 .wedding-card{ grid-area: wedding; }
 .venue-card{
   grid-area: venue;
-  min-height:100%;
+  width:100%;
+}
+
+.event-card, .venue-card, .scratch-card{
+  border:1px solid rgba(216,181,106,.14);
+  background:rgba(255,255,255,.03);
+  border-radius:24px;
+  padding:18px;
+  position:relative;
+  overflow:hidden;
+}
+
+.event-card h3, .venue-card h3{
+  font-size:1.9rem;
+  margin-bottom:8px;
+}
+
+.venue-card{
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+}
+
+.map-btn{
+  width:100%;
+  justify-content:center;
+  margin-top:14px;
+}
+
+@media (max-width: 760px){
+  .events-grid{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "reception"
+      "wedding"
+      "venue";
+  }
 }
 
 .event-card, .venue-card, .scratch-card{
