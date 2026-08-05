@@ -1,7 +1,5 @@
 :root{
   --bg:#0b0b0f;
-  --bg2:#12121a;
-  --card:#121219cc;
   --text:#f4efe6;
   --muted:#c8bca8;
   --gold:#d8b56a;
@@ -36,7 +34,6 @@ a{color:inherit}
   mix-blend-mode:soft-light;
   z-index:0;
 }
-
 .cover{
   min-height:100svh;
   display:grid;
@@ -196,9 +193,10 @@ body.open .content{
   pointer-events:auto;
 }
 body.open .cover{
-  min-height:auto;
-  padding:18px 18px 0;
-  display:block;
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  position:absolute;
 }
 
 section{
@@ -244,12 +242,55 @@ section{
   line-height:1.8;
 }
 
+.count-panel{
+  padding:18px;
+}
+.count-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:12px;
+  margin-bottom:14px;
+}
+.count-title h3{
+  font-size:1.9rem;
+}
+.meta{
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.unit{
+  text-align:center;
+  padding:12px 8px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,240,191,.12);
+}
+.unit b{
+  display:block;
+  font-size:1.55rem;
+  font-family:"Cormorant Garamond",serif;
+  color:var(--gold2);
+}
+.unit span{
+  font-size:10px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
 .card-grid{
   display:grid;
   gap:14px;
   padding:18px;
 }
-.event-card, .venue-card, .count-card, .scratch-card{
+.event-card, .venue-card, .scratch-card{
   border:1px solid rgba(216,181,106,.14);
   background:rgba(255,255,255,.03);
   border-radius:24px;
@@ -257,14 +298,9 @@ section{
   position:relative;
   overflow:hidden;
 }
-.event-card h3, .venue-card h3, .count-card h3{
+.event-card h3, .venue-card h3{
   font-size:1.9rem;
   margin-bottom:8px;
-}
-.meta{
-  color:var(--muted);
-  line-height:1.7;
-  font-size:14px;
 }
 .pill{
   display:inline-flex;
@@ -279,7 +315,6 @@ section{
   text-decoration:none;
   font-size:13px;
 }
-
 .scratch-wrap{
   padding:18px;
 }
@@ -329,12 +364,7 @@ section{
   transition:opacity .35s ease;
 }
 .scratch-card.revealed .scratch-layer{opacity:0; pointer-events:none}
-
-.petals{
-  position:absolute; inset:0;
-  pointer-events:none;
-  overflow:hidden;
-}
+.petals{position:absolute; inset:0; pointer-events:none; overflow:hidden;}
 .petal{
   position:absolute;
   width:14px;height:10px;
@@ -350,7 +380,6 @@ section{
     opacity:0;
   }
 }
-
 .photos{
   padding:18px 18px 0;
 }
@@ -363,9 +392,6 @@ section{
   height:320px;
   border-radius:28px;
   overflow:hidden;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
-    radial-gradient(circle at top, rgba(216,181,106,.14), transparent 55%);
   border:1px solid rgba(216,181,106,.12);
   position:sticky;
   top:12px;
@@ -373,13 +399,6 @@ section{
 }
 .photo:nth-child(2){top:22px}
 .photo:nth-child(3){top:32px}
-.photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  opacity:.88;
-}
 .photo .placeholder{
   width:100%;height:100%;
   display:grid;place-items:center;
@@ -392,43 +411,14 @@ section{
     linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,.01)),
     radial-gradient(circle at 30% 20%, rgba(216,181,106,.16), transparent 35%);
 }
-
 .footer{
   padding:18px 18px 32px;
 }
-
-.countdown{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-  margin-top:16px;
-}
-.unit{
-  text-align:center;
-  padding:12px 8px;
-  border-radius:18px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,240,191,.12);
-}
-.unit b{
-  display:block;
-  font-size:1.55rem;
-  font-family:"Cormorant Garamond",serif;
-  color:var(--gold2);
-}
-.unit span{
-  font-size:10px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--muted);
-}
-
 .map-btn{
   width:100%;
   justify-content:center;
   margin-top:14px;
 }
-
 @media (min-width: 760px){
   .hero{padding:46px 28px 34px}
   .card-grid{grid-template-columns:1fr 1fr}
