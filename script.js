@@ -6,6 +6,9 @@ const scratchLayer = document.getElementById('scratchLayer');
 const dateReveal = document.getElementById('dateReveal');
 const petals = document.getElementById('petals');
 const bgMusic = document.getElementById('bgMusic');
+const wishesForm = document.getElementById('wishesForm');
+const wishesSuccess = document.getElementById('wishesSuccess');
+
 
 openBtn.addEventListener('click', async () => {
   document.body.classList.add('open');
@@ -84,3 +87,10 @@ function tick(){
 }
 tick();
 setInterval(tick, 1000);
+if (wishesForm) {
+  wishesForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    wishesSuccess.hidden = false;
+    wishesForm.reset();
+  });
+}
