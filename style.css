@@ -34,6 +34,7 @@ a{color:inherit}
   mix-blend-mode:soft-light;
   z-index:0;
 }
+
 .cover{
   min-height:100svh;
   display:grid;
@@ -285,11 +286,27 @@ section{
   color:var(--muted);
 }
 
-.card-grid{
+/* Events layout */
+.events-grid{
   display:grid;
   gap:14px;
   padding:18px;
+  grid-template-columns:1fr 1fr;
+  grid-template-areas:
+    "reception wedding"
+    ". venue";
 }
+
+.reception-card{ grid-area: reception; }
+.wedding-card{ grid-area: wedding; }
+.venue-card{
+  grid-area: venue;
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
 .event-card, .venue-card, .scratch-card{
   border:1px solid rgba(216,181,106,.14);
   background:rgba(255,255,255,.03);
@@ -419,8 +436,16 @@ section{
   justify-content:center;
   margin-top:14px;
 }
+@media (max-width: 760px){
+  .events-grid{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "reception"
+      "wedding"
+      "venue";
+  }
+}
 @media (min-width: 760px){
   .hero{padding:46px 28px 34px}
-  .card-grid{grid-template-columns:1fr 1fr}
   .photo{height:420px}
 }
