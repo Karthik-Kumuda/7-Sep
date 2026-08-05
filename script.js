@@ -1,0 +1,71 @@
+const openBtn = document.getElementById('openBtn');
+const scratchCard = document.getElementById('scratchCard');
+const scratchLayer = document.getElementById('scratchLayer');
+const dateReveal = document.getElementById('dateReveal');
+const petals = document.getElementById('petals');
+
+openBtn.addEventListener('click', () => {
+  document.body.classList.add('open');
+  setTimeout(() => document.getElementById('content').scrollIntoView({behavior:'smooth', block:'start'}), 200);
+});
+
+let revealed = false;
+const revealDate = () => {
+  if (revealed) return;
+  revealed = true;
+  scratchCard.classList.add('revealed');
+  dateReveal.classList.add('show');
+  burstPetals();
+};
+
+function burstPetals(){
+  const count = 20;
+  for(let i=0;i<count;i++){
+    const p = document.createElement('i');
+    p.className = 'petal';
+    const x = 15 + Math.random()*70;
+    const dx = (Math.random()*2-1) * 120 + 'px';
+    const rot = (Math.random()*720 - 360) + 'deg';
+    p.style.left = x + '%';
+    p.style.top = '40%';
+    p.style.setProperty('--dx', dx);
+    p.style.setProperty('--rot', rot);
+    p.style.animationDelay = (Math.random()*0.12) + 's';
+    petals.appendChild(p);
+    setTimeout(() => p.remove(), 1800);
+  }
+}
+
+['pointermove','pointerdown','touchmove'].forEach(evt => {
+  scratchCard.addEventListener(evt, (e) => {
+    const t = e.touches ? e.touches[0] : e;
+    const r = scratchCard.getBoundingClientRect();
+    const x = ((t.clientX - r.left) / r.width) * 100;
+    const y = ((t.clientY - r.top) / r.height) * 100;
+    scratchLayer.style.setProperty('--x', x + '%');
+    scratchLayer.style.setProperty('--y', y + '%');
+    if (e.type !== 'pointermove' && e.type !== 'touchmove') revealDate();
+  }, {passive:true});
+});
+scratchCard.addEventListener('click', revealDate);
+
+const weddingDate = new Date('2026-09-07T09:30:00');
+const dd = document.getElementById('dd');
+const hh = document.getElementById('hh');
+const mm = document.getElementById('mm');
+const ss = document.getElementById('ss');
+
+function tick(){
+  const now = new Date();
+  const diff = Math.max(0, weddingDate - now);
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  dd.textContent = d;
+  hh.textContent = h;
+  mm.textContent = m;
+  ss.textContent = s;
+}
+tick();
+setInterval(tick, 1000);
