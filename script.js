@@ -88,7 +88,7 @@ function tick(){
 tick();
 setInterval(tick, 1000);
 const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbx1py9fQFiuuIQtPl9HB8x29VBQiur9ZEnju2XkHduyU0I59Q3ApGIKDFPe2uPXbTBX/exec';
+  'https://script.google.com/macros/s/AKfycbwmDeMDNzEirRZuronqZ_N6UQgSnCHkb2R0ddUSZtcLFQmErRQO2VKKUBIofGcGLJQM/exec';
 
 if (wishesForm) {
   wishesForm.addEventListener('submit', async (e) => {
