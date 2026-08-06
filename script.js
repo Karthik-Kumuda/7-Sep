@@ -87,10 +87,47 @@ function tick(){
 }
 tick();
 setInterval(tick, 1000);
+const GOOGLE_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbx1py9fQFiuuIQtPl9HB8x29VBQiur9ZEnju2XkHduyU0I59Q3ApGIKDFPe2uPXbTBX/exec';
+
 if (wishesForm) {
-  wishesForm.addEventListener('submit', (e) => {
+  wishesForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    wishesSuccess.hidden = false;
-    wishesForm.reset();
+
+    const name = document.getElementById('guestName').value.trim();
+    const wish = document.getElementById('guestWish').value.trim();
+    const submitButton = wishesForm.querySelector('button[type="submit"]');
+
+    if (!name || !wish) {
+      alert('Please enter your name and wishes.');
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+
+    const formData = new URLSearchParams();
+
+    formData.append('name', name);
+    formData.append('wish', wish);
+    formData.append('userAgent', navigator.userAgent);
+
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      });
+
+      wishesSuccess.hidden = false;
+      wishesForm.reset();
+      submitButton.textContent = 'Sent';
+
+    } catch (error) {
+      console.error(error);
+      alert('Sorry, your wishes could not be sent. Please try again.');
+      submitButton.disabled = false;
+      submitButton.textContent = 'Send Wishes';
+    }
   });
 }
